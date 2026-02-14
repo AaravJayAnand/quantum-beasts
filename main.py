@@ -1,3 +1,4 @@
+
 # ---------------------------------------------------------------------------- #
 #                                                                              #
 # 	Module:       main.py                                                      #
@@ -210,30 +211,85 @@ def toggle_center_goal():
 
 # Competition Functions
 def autonomous():
-    # Example code for right side autonomous. Adjust constants and PID values as needed.
-
-    intake.spin(FORWARD) # Intake in
-    drive(640, speed_factor=2.0)
-    intake.stop() # Stop intake
-    turn(110, RIGHT)
-    drive(830, speed_factor=1.5)
     matchloader.set(True) # Deploy matchloader (extend piston)
-    turn(60, RIGHT, turn_pid_factor=0.7)
-    intake.spin(FORWARD)
-    drivetrain.drive(FORWARD, 50, PERCENT)
-    wait(1400, MSEC) # Wait to give time to blocks to be matchloaded
-    drivetrain.stop() # Stop drivetrain
-    intake.stop() # Stop intake
-    # drive(-780, speed_factor=2)
-    drivetrain.drive(REVERSE, 80, PERCENT) # Drive backwards towards long goal
-    wait(1500, MSEC) # Drive for 1500 ms
+    drive(265, speed_factor=5)
+    # turn(90,RIGHT)
+    # intake.spin(FORWARD) # Intake in
+    # drive(265, speed_factor=2.5)
+    # drive(-20, speed_factor=2.0)
+    # drive(20, speed_factor=2.0)
+    # wait(3000, MSEC) # Drive for 1500 ms
+    # drive(-850, speed_factor=1.5)
+    # scorer.spin(FORWARD)
+    # wait(3000, MSEC)
+    # drive(200, speed_factor=2.0)
+    # intake.stop()
     # matchloader.set(False)
-    intake.spin(FORWARD)
-    scorer.spin(FORWARD)
+    # turn(90, LEFT)
+    # drive(300, speed_factor=2.0)
+    # turn(90, LEFT)
+    # drive(7000, speed_factor=2.0)
+    # turn(90, LEFT)
+    # drive(300, speed_factor=2.0)
+    # turn(490, LEFT)
+    # intake.spin(FORWARD)
+    # matchloader.set(True)
+    # drive(500, speed_factor=2.0)
+    # wait(3000, MSEC)
+    # drive(-800, speed_factor=2.0)
+    # scorer.spin(FORWARD)
+    # wait(3000, MSEC)
+    # drive(300, speed_factor=2.0)
+    # intake.stop()
+    # turn(90, LEFT)
+    # drive(300, speed_factor=2.0)
+    # turn(90, LEFT)
+    # intake.spin(FORWARD)
+    # matchloader.set(False)
+    # drive(500, speed_factor=2.0)
+    # wait(3000, MSEC)
+    # drive(-800, speed_factor=2.0)
+    # drive(200, speed_factor=2.0)
+    # matchloader.set(False)
+    # turn(90, LEFT)
+    # drive(300, speed_factor=2.0)
+    # turn(90, LEFT)
+    # drive(6000, speed_factor=2.0)
+    # turn(60, LEFT)
+    # drive(500, speed_factor=2.0)
+    # turn(60, RIGHT)
+    # matchloader.set(True)
+    # drive(300, speed_factor=2.0)
+    # wait(3000, MSEC)
+    # drive(-800, speed_factor=2.0)
+    # scorer.spin(FORWARD)
+    # drive(-800, speed_factor=2.0)
+    # turn(90, RIGHT)
+    # # drive(640, speed_factor=2.0)
+    # # intake.stop() # Stop intake
+    # # turn(110, RIGHT)
+    # # drive(830, speed_factor=1.5)
+    # # matchloader.set(True) # Deploy matchloader (extend piston)
+    # # turn(60, RIGHT, turn_pid_factor=0.7)
+    # # intake.spin(FORWARD)
+    # # drivetrain.drive(FORWARD, 50, PERCENT)
+    # # wait(1400, MSEC) # Wait to give time to blocks to be matchloaded
+    # # drivetrain.stop() # Stop drivetrain
+    # # intake.stop() # Stop intake
+    # # # drive(-780, speed_factor=2)
+    # # drivetrain.drive(REVERSE, 80, PERCENT) # Drive backwards towards long goal
+    # # wait(1500, MSEC) # Drive for 1500 ms
+    # # # matchloader.set(False)
+    # # intake.spin(FORWARD)
+    # # scorer.spin(FORWARD)
     
 def driver_control():
     # | Control Scheme | Tank Joysticks | Intake L1 | Outtake R2 | Score L2 | Matchloader R1 | Descorer X | Center Goal UP |
     controller_screen_thread = Thread(controller_screen)
+
+    # Set Braking Controls
+    dt_left.set_stopping(COAST)
+    dt_right.set_stopping(COAST)
 
     # Button Toggles
     controller.buttonR1.pressed(toggle_matchloader)
