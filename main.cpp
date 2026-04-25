@@ -37,6 +37,8 @@ void initialize() {
   ez::as::auton_selector.autons_add({
     Auton("Left Match", left_awp),
     Auton("Right Match", right_awp),
+    Auton("All AWP", all_awp),
+    Auton("Skills", skills_auton),
   });
   master.rumble(chassis.drive_imu_calibrated() ? ".-.-" : ".-");
 }
@@ -80,7 +82,6 @@ void autonomous() {
   chassis.drive_sensor_reset();               // Reset drive sensors to 0
   chassis.odom_xyt_set(0_in, 0_in, 0_deg);    // Set the current position, you can start at a specific position with this
   chassis.drive_brake_set(MOTOR_BRAKE_HOLD);  // Set motors to hold.  This helps autonomous consistency
-
   centerGoal.set(false);
 
   ez::as::auton_selector.selected_auton_call();  // Calls selected auton from autonomous selector
@@ -136,7 +137,16 @@ void ez_screen_task() {
     pros::delay(ez::util::DELAY_TIME);
   }
 }
+
+void controller_screen() {
+    int temp;
+    temp = pros::Motor(9).get_temperature();
+    master.set_text(0, 0, "Temp: " + to_string(temp) + "C");
+    pros::delay(100);
+}
+
 pros::Task ezScreenTask(ez_screen_task);
+pros::Task controllerScreen(controller_screen);
 
 void ez_template_extras() {
   if (!pros::competition::is_connected()) {
@@ -153,7 +163,6 @@ void ez_template_extras() {
       autonomous();
       chassis.drive_brake_set(preference);
     }
-
     chassis.pid_tuner_iterate();
   }
 

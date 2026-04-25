@@ -139,7 +139,7 @@ void all_awp() {
     outtake.move(0); // Stop scoring
     chassis.pid_swing_set(e_swing::LEFT_SWING, 205_deg, 120); // Swing to position for intaking the center blocks
     pros::delay(200);
-    chassis.pid_odom_set({{-10_in, -10_in}, fwd, 100}); // Intake blocks
+    chassis.pid_odom_set({{-14_in, -40_in}, fwd, 100}); // Intake blocks
     // Put matchloader down on blocks to enclose them
     pros::delay(800);
     matchloader.set(true);
@@ -148,15 +148,15 @@ void all_awp() {
     pros::delay(600);
     matchloader.set(true); // Extend matchloader for matchloading
     chassis.pid_wait();
-    chassis.pid_odom_set({{-30_in, -28_in}, rev, 127}); // Move to center goal
+    chassis.pid_odom_set({{-30_in, -24_in}, rev, 127}); // Move to center goal
     chassis.pid_wait();
     outtake.move(-127); // Score in center goal
     pros::delay(300);
-    chassis.pid_odom_set({{20_in, -59_in, 90_deg}, fwd, 110}); // Move to matchloader
+    chassis.pid_odom_set({{20_in, -58_in, 90_deg}, fwd, 110}); // Move to matchloader
     chassis.pid_wait();
-    chassis.pid_odom_set({{28_in, -59_in, 90_deg}, fwd, 127}); // Ram into matchloader and matchload
+    chassis.pid_odom_set({{28_in, -58_in, 90_deg}, fwd, 127}); // Ram into matchloader and matchload
     chassis.pid_wait();
-    chassis.pid_odom_set({{-13_in, -59_in, 90_deg}, rev, 127}); // Move to long goal
+    chassis.pid_odom_set({{-13_in, -58_in, 90_deg}, rev, 127}); // Move to long goal
     chassis.pid_wait();
     outtake.move(127); // Score
 }
@@ -178,7 +178,7 @@ void skills_auton() {
     chassis.pid_wait();
     chassis.pid_turn_set(-90_deg, 110);
     chassis.pid_odom_set({{-72_in, 27_in, -90_deg}, rev, 80}); // Move into long goal
-    intake.move(40); // Move intake forward to prevent jams
+    intake.move(40); // Move intake forward to prevent jam
     chassis.pid_wait();
     intake.move(-127); // Reset intake
     outtake.move(127); // Score
@@ -186,48 +186,44 @@ void skills_auton() {
     outtake.move(0); // Stop outtake
     chassis.pid_odom_set({{-112_in, 27_in, -90_deg}, fwd, 127}); // Matchload
     pros::delay(2250); // Wait for blocks to load
-    chassis.pid_odom_set({{-72_in, 27_in, -90_deg}, rev, 127}); // Move back into long goal
+    chassis.pid_odom_set({{-70_in, 27_in, -90_deg}, rev, 127}); // Move back into long goal
     intake.move(40); // Move intake forward to prevent jams
     chassis.pid_wait();
     intake.move(-127); // Reset intake
     outtake.move(127); // Score
     pros::delay(2500); // Wait for blocks to score
     outtake.move(0); // Stop scoring
-    matchloader.set(false); // Contract matchloader
-    chassis.pid_odom_set({{-112_in, -13_in, 180_deg}, fwd, 120}); // Move to blue parking zone
+    chassis.pid_odom_set({{-80_in, -20_in, 180_deg}, fwd, 120}); // Move  blue parking zone
     chassis.pid_wait();
-    matchloader.set(true); // Extend matchloader to clear 6 blocks in parking zone
-    chassis.pid_odom_set({{-112_in, -60_in, 180_deg}, fwd, 127}); // Clear blue parking zone
-    chassis.pid_wait();
-    chassis.pid_odom_set({{-96_in, -82_in}, fwd, 127}); // Move to 3rd matchloader
+    chassis.pid_odom_set({{-96_in, -70_in}, fwd, 127}); // Move to 3rd matchloader
     chassis.pid_wait();
     chassis.pid_turn_set(-90_deg, 110); // Turn to long goal
     chassis.pid_wait();
-    chassis.pid_odom_set({{-72_in, -82_in, -90_deg}, rev, 127}); // Move into long goal
+    chassis.pid_odom_set({{-70_in, -70_in, -90_deg}, rev, 127}); // Move into long goal
     chassis.pid_wait();
     outtake.move(127); // Score
     pros::delay(2500);// Wait for blocks to score
     outtake.move(0); // Stop scoring
-    chassis.pid_odom_set({{-112_in, -82_in, -90_deg}, fwd, 127}); // Matchload
+    chassis.pid_odom_set({{-112_in, -70_in, -90_deg}, fwd, 127}); // Matchload
     chassis.pid_wait();
     pros::delay(2250); // Wait for blocks to load
-    chassis.pid_odom_set({{-72_in, -92_in, -90_deg}, rev, 110}); // Prepare to move to 4th matchloader
+    chassis.pid_odom_set({{-70_in, -84_in, -90_deg}, rev, 110}); // Prepare to move to 4th matchloader
     chassis.pid_wait();
-    chassis.pid_odom_set({{6_in, -92_in, -90_deg}, rev, 127}); // Move to 4th matchloader
+    chassis.pid_odom_set({{6_in, -84_in, -90_deg}, rev, 127}); // Move to 4th matchloader
     chassis.pid_wait();
     chassis.pid_swing_set(e_swing::LEFT_SWING, 90_deg, 110); // Turn to long goal
     chassis.pid_wait();
-    chassis.pid_odom_set({{-12_in, -82_in, 90_deg}, rev, 127}); // Move into long goal
+    chassis.pid_odom_set({{-12_in, -70_in, 90_deg}, rev, 127}); // Move into long goal
     intake.move(40); // Move intake forward to prevent jams
     chassis.pid_wait();
     intake.move(-127); // Reset intake
     outtake.move(127); // Score
     pros::delay(2500);// Wait for blocks to score
     outtake.move(0); // Stop scoring
-    chassis.pid_odom_set({{24_in, -82_in, 90_deg}, fwd, 127}); // Matchload
+    chassis.pid_odom_set({{24_in, -74_in, 90_deg}, fwd, 127}); // Matchload
     chassis.pid_wait();
     pros::delay(2250); // Wait for blocks to load
-    chassis.pid_odom_set({{-12_in, -82_in, 90_deg}, rev, 127}); // Move back into long goal
+    chassis.pid_odom_set({{-12_in, -74_in, 90_deg}, rev, 127}); // Move back into long goal
     intake.move(40); // Move intake forward to prevent jams
     chassis.pid_wait();
     intake.move(-127); // Reset intake
@@ -235,8 +231,8 @@ void skills_auton() {
     pros::delay(2500);// Wait for blocks to score
     outtake.move(0); // Stop scoring
     matchloader.set(false); // Retract matchloader
-    chassis.pid_odom_set({{24_in, -20_in, 90_deg}, fwd, 127}); // Park
-    pros::delay(400);
+    chassis.pid_odom_set({{30_in, -10_in, 0_deg}, fwd, 127}); // Park
+    pros::delay(800);
     matchloader.set(true); // Extend matchloader to clear red parking zone
     chassis.pid_wait();
 }
