@@ -1,6 +1,6 @@
-<h1>**88485A QUANTUM BEASTS**</h1>
+<h1>88485A QUANTUM BEASTS</h1>
 
-<p>This update includes most of <em>88485A's (Quantum Beasts')</em> updated code for VEX WORLDS (25-26 V5RC Push Back). Our code uses *ez-template* and *PROS*. Downloading the ez-template base and replacing these files with identical names will result in our current functional code for viewing.</p>p
+<p>This update includes most of <em>88485A's (Quantum Beasts')</em> updated code for VEX WORLDS (25-26 V5RC Push Back). Our code uses <em>ez-template</em> and <em>PROS</em>. Downloading the ez-template base and replacing these files with identical names will result in our current functional code for viewing.</p>p
 ---
 ez-template installation guide: (https://ez-robotics.github.io/EZ-Template/tutorials/installation)
 ---
