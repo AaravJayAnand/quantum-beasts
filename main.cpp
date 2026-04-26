@@ -35,8 +35,8 @@ void initialize() {
   chassis.initialize();
   ez::as::initialize();
   ez::as::auton_selector.autons_add({
-    Auton("Left Match", left_awp),
     Auton("Right Match", right_awp),
+    Auton("Left Match", left_awp),
     Auton("All AWP", all_awp),
     Auton("Skills", skills_auton),
   });

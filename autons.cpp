@@ -59,7 +59,7 @@ void left_awp() {
     pros::delay(675);
     outtake.move(127);
     chassis.pid_wait_quick();
-    pros::delay(500); // Wait 500ms to allow for time to score
+    pros::delay(400); // Wait 500ms to allow for time to score
     /* Keep the outtake running to dispose of any extra blocks that may have been collected
        This prevents interference from blocks blocking (:D) the center goal piston */
     chassis.pid_odom_set({{-28_in, 8_in}, fwd, 127}); // Prepare to move to center goal
@@ -68,14 +68,13 @@ void left_awp() {
     chassis.pid_turn_set(45_deg, 110);
     chassis.pid_wait();
     chassis.pid_odom_set({{5_in, 40_in, 45_deg}, fwd, 127}); // Position to intake center 3 blocks
-    pros::delay(500);
+    pros::delay(400);
     outtake.move(0); // Stop outtake
     matchloader.set(true); // Extend matchloader to enclose blocks for collection
     chassis.pid_wait_quick();
-    chassis.pid_wait();
-    chassis.pid_odom_set({{0_in, 36_in}, rev, 127}); // Move back so following turn doesn't hit center goal
+    // chassis.pid_odom_set({{0_in, 36_in}, rev, 127}); // Move back so following turn doesn't hit center goal
     matchloader.set(false); // Contract matchloader
-    chassis.pid_wait_quick();
+    // chassis.pid_wait_quick();
     chassis.pid_turn_set(225_deg, 127); // Turn to 225 deg to prepare to score in center goal
     chassis.pid_wait_quick();
     intake.move(30); // Slightly move intake in opposite direction to allow for a cleaner score
@@ -92,8 +91,8 @@ void left_awp() {
     outtake.move(0); // Stop outtake
     centerGoal.set(true); // Extend center goal piston
     // Descore long goal
-    chassis.pid_odom_set({{-12_in, 35_in, 0_deg}, fwd, 127});
-    chassis.pid_wait();
+    // chassis.pid_odom_set({{-12_in, 35_in, 0_deg}, fwd, 127});
+    // chassis.pid_wait();
     descorer.set(true);
     chassis.pid_odom_set({{-15_in, 55_in, 0_deg}, fwd, 127});
     chassis.pid_wait_quick();
@@ -107,18 +106,18 @@ void right_awp() {
     pros::delay(600);
     matchloader.set(true); // Bring down matchloader after 600 ms to enclose blocks and matchload later
     chassis.pid_wait_quick();
-    chassis.pid_odom_set({{27_in, 6_in, 180_deg}, fwd, 80}); // Move to matchloader
+    chassis.pid_odom_set({{28_in, 6_in, 180_deg}, fwd, 80}); // Move to matchloader
     chassis.pid_wait_quick();
-    chassis.pid_odom_set({{27_in, -4_in, 180_deg}, fwd, 127}); // Ram into matchloader
+    chassis.pid_odom_set({{28_in, -4_in, 180_deg}, fwd, 127}); // Ram into matchloader
     chassis.pid_wait_quick(); // This wait is enough to matchload blocks
-    chassis.pid_odom_set({{28_in, 36_in, 180_deg}, rev, 127}); // Reverse into long goal
+    chassis.pid_odom_set({{28.5_in, 36_in, 180_deg}, rev, 127}); // Reverse into long goal
     chassis.pid_wait_quick();
     outtake.move(127); // Start outtake
     pros::delay(3000); // Wait 1250 ms for blocks to scor e into long goal
     outtake.move(0); // Stop outtake
-    chassis.pid_odom_set({{23_in, 18_in, 180_deg}, fwd, 127}); // Prepare to descore
+    chassis.pid_odom_set({{22.5_in, 18_in, 180_deg}, fwd, 127}); // Prepare to descore
     chassis.pid_wait_quick();
-    chassis.pid_odom_set({{23_in, 50_in, 180_deg}, rev, 127}); // Descore
+    chassis.pid_odom_set({{22.5_in, 50_in, 180_deg}, rev, 127}); // Descore
     descorer.set(true); // Bring down descore wing
     chassis.pid_wait_quick();
 }
@@ -148,17 +147,22 @@ void all_awp() {
     pros::delay(600);
     matchloader.set(true); // Extend matchloader for matchloading
     chassis.pid_wait();
-    chassis.pid_odom_set({{-30_in, -24_in}, rev, 127}); // Move to center goal
-    chassis.pid_wait();
+    chassis.pid_odom_set({{-23.5_in, -29.5_in}, rev, 127}); // Move to center goal
+    pros::delay(150);
     outtake.move(-127); // Score in center goal
-    pros::delay(300);
+    centerGoal.set(true);
+    chassis.pid_wait();
+    pros::delay(450);
+    centerGoal.set(false);
+    outtake.move(0); // Stop outtake
     chassis.pid_odom_set({{20_in, -58_in, 90_deg}, fwd, 110}); // Move to matchloader
     chassis.pid_wait();
-    chassis.pid_odom_set({{28_in, -58_in, 90_deg}, fwd, 127}); // Ram into matchloader and matchload
+    chassis.pid_odom_set({{30_in, -58_in, 90_deg}, fwd, 127}); // Ram into matchloader and matchload
     chassis.pid_wait();
     chassis.pid_odom_set({{-13_in, -58_in, 90_deg}, rev, 127}); // Move to long goal
-    chassis.pid_wait();
+    pros::delay(400);
     outtake.move(127); // Score
+    chassis.pid_wait();
 }
     
 // Auton skills
